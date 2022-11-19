@@ -8,6 +8,7 @@
     <arg name="add_gripper" default="false"/>
     <arg name="add_vacuum_gripper" default="false"/>
     <arg name="namespace" default="xarm"/>
+    <arg name="gripper_meshes_path" default=""/>
 
     <arg name="xarm_velocity_control" value="$(eval arg('velocity_control') and not arg('run_demo'))"/>
 
@@ -30,7 +31,8 @@
     <param if="$(arg add_gripper)" name="robot_description"
            command="$(find xacro)/xacro
     --inorder '$(find xarm_description)/urdf/xarm6_with_gripper.xacro'
-    effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control)"/>
+    effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control) 
+        gripper_meshes_path:='$(arg gripper_meshes_path)'"/>
 
     <param if="$(arg add_vacuum_gripper)" name="robot_description"
            command="$(find xacro)/xacro
@@ -41,7 +43,7 @@
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model"
           respawn="false" output="screen"
           args="-urdf -model xarm6 -x 0 -y -0.5 -z 1.021 -Y 1.571 -param robot_description"/>
-    
+
     <!-- load the corresponding controllers -->
     <include file="$(find xarm_controller)/launch/xarm6_control.launch">
         <arg name="run_demo_traj" value="$(arg run_demo)"/>
