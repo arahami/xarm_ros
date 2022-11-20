@@ -12,6 +12,8 @@
     <xacro:arg name="xyz" default="0 0 0"/>
     <xacro:arg name="rpy" default="0 0 0"/>
     <xacro:arg name="gripper_meshes_path" default=""/>
+    <xacro:arg name="rpy" default="0 0 0"/>
+    <xacro:arg name="xyz" default="0 0 0"/>
     <!---->
 
     <!-- load xarm6 robot -->

@@ -27,12 +27,14 @@
     <arg name="gripper_controller"/>
     <arg name="gripper_meshes_path" default=""/>
     <arg name="rpy" default="0 0 0"/>
+    <arg name="xyz" default="0 0 0"/>
 
     <!-- Load the URDF, SRDF and other .yaml configuration files on the param server, limit joint range within [-pi, pi] -->
     <include file="$(find xarm6_gripper_moveit_config)/launch/planning_context.launch">
         <arg name="load_robot_description" value="true"/>
         <arg name="gripper_meshes_path" value="$(arg gripper_meshes_path)"/>
         <arg name="rpy" value="$(arg rpy)"/>
+        <arg name="xyz" value="$(arg xyz)"/>
     </include>
 
     <!-- If needed, broadcast static tf for robot root -->
