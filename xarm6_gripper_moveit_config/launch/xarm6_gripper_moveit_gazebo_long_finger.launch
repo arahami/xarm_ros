@@ -1,7 +1,7 @@
 <launch>
     <arg name="velocity_control" default="false"/>
     <arg name="namespace" default="xarm"/>
-    <arg name="gripper_meshes_path" default=""/>
+    <arg name="gripper_meshes_path" value="xarm_gripper/meshes/xarm_long_finger_assembled"/>
     <arg name="rpy" default="0 0 1.57"/>
     <!-- Remap the name space so it can send command to gazebo loaded controller -->
     <!-- this remap must appear BEFORE move_group launch -->

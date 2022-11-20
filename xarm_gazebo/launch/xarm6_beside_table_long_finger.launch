@@ -8,7 +8,7 @@
     <arg name="add_gripper" default="false"/>
     <arg name="add_vacuum_gripper" default="false"/>
     <arg name="namespace" default="xarm"/>
-    <arg name="gripper_meshes_path" default=""/>
+    <arg name="gripper_meshes_path" value="xarm_gripper/meshes/xarm_long_finger_assembled"/>
 
     <arg name="xarm_velocity_control" value="$(eval arg('velocity_control') and not arg('run_demo'))"/>
 
