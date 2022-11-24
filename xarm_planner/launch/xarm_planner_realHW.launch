@@ -12,11 +12,6 @@
   <arg name="report_type" default="normal" />
   <arg name="ext_ns" default="" />
   <arg name="robot_type" default="xarm"/>
-  <arg name="rpy" default="0.0 0 0"/>
-  <arg name="xyz" default="0 0 0.0"/>
-  <arg name="gripper_meshes_path" default=""/>
-  <arg name="tcp_z" default=""/>
-  <arg name="gripper_rpy" default="0 0 0"/>
 
   <remap from="move_group/display_planned_path" to="$(arg ext_ns)/move_group/display_planned_path" />
   <include file="$(find xarm_planner)/launch/moveit_real_arm_configurations.launch">
@@ -27,11 +22,6 @@
     <arg name="report_type" value="$(arg report_type)" />
     <arg name="ext_ns" value="$(arg ext_ns)" />
     <arg name="robot_type" value="$(arg robot_type)" />
-    <arg name="xyz" value="$(arg xyz)"/>
-    <arg name="rpy" value="$(arg rpy)"/>
-    <arg name="gripper_meshes_path" value="'$(arg gripper_meshes_path)'"/>
-    <arg name="tcp_z" value="'$(arg tcp_z)'" />
-    <arg name="gripper_rpy" value="'$(arg gripper_rpy)'" />
   </include>
 
   <!-- <remap from="DOF" to="$(arg ext_ns)/xarm/DOF" /> -->

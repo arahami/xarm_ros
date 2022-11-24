@@ -26,19 +26,15 @@
     <!-- whether or not to load a moveit controller for gripper -->
     <arg name="gripper_controller"/>
     <arg name="gripper_meshes_path" default=""/>
-    <arg name="rpy" default="0 0 0"/>
-    <arg name="xyz" default="0 0 0"/>
-    <arg name="tcp_z" default=""/>
-    <arg name="gripper_rpy" default="0 0 0"/>
+    <arg name="upside_down" default="false"/>
+    <arg name="long_finger" default="false"/>
 
     <!-- Load the URDF, SRDF and other .yaml configuration files on the param server, limit joint range within [-pi, pi] -->
     <include file="$(find xarm6_gripper_moveit_config)/launch/planning_context.launch">
         <arg name="load_robot_description" value="true"/>
-        <arg name="gripper_meshes_path" value="'$(arg gripper_meshes_path)'"/>
-        <arg name="rpy" value="$(arg rpy)"/>
-        <arg name="xyz" value="$(arg xyz)"/>
-        <arg name="tcp_z" value="'$(arg tcp_z)'"/>
-        <arg name="gripper_rpy" value="'$(arg gripper_rpy)'" />
+        <arg name="gripper_meshes_path" value="$(arg gripper_meshes_path)"/>
+        <arg name="upside_down" value="$(arg upside_down)"/>
+        <arg name="long_finger" value="$(arg long_finger)"/>
     </include>
 
     <!-- If needed, broadcast static tf for robot root -->
