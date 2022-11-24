@@ -12,8 +12,8 @@
     <xacro:arg name="xyz" default="0 0 0"/>
     <xacro:arg name="rpy" default="0 0 0"/>
     <xacro:arg name="gripper_meshes_path" default=""/>
-    <xacro:arg name="rpy" default="0 0 0"/>
-    <xacro:arg name="xyz" default="0 0 0"/>
+    <xacro:arg name="tcp_z" default=""/>
+    <xacro:arg name="gripper_rpy" default="0 0 0"/>
     <!---->
 
     <!-- load xarm6 robot -->
@@ -21,20 +21,20 @@
 
     <!-- Attach gripper -->
     <xacro:include filename="$(find xarm_gripper)/urdf/xarm_gripper_model.xacro"/>
-
     <!--    rpy and xyz added-->
     <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)"
                        effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)"
                        rs_d435i="$(arg add_realsense_d435i)" xyz="$(arg xyz)" rpy="$(arg rpy)"/>
 
+    <!-- load gripper -->
     <xacro:if value="$(arg add_realsense_d435i)">
         <xacro:load_gripper attach_to="$(arg prefix)link_eef" xyz="0 0 0.003" effort_control="$(arg effort_control)"
-                            velocity_control="$(arg velocity_control)" robot_dof="6"/>
+                            velocity_control="$(arg velocity_control)" robot_dof="6" />
     </xacro:if>
     <xacro:unless value="$(arg add_realsense_d435i)">
         <xacro:load_gripper attach_to="$(arg prefix)link_eef" effort_control="$(arg effort_control)"
-                            velocity_control="$(arg velocity_control)" robot_dof="6"
-                            gripper_meshes_path="$(arg gripper_meshes_path)"/>
+                            velocity_control="$(arg velocity_control)" robot_dof="6" rpy="$(arg gripper_rpy)"
+                            gripper_meshes_path="$(arg gripper_meshes_path)" tcp_z="$(arg tcp_z)"/>
     </xacro:unless>
 
     <xacro:if value="$(arg use_gazebo_camera)">

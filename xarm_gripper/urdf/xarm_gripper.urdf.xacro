@@ -4,9 +4,12 @@
       Author: Jason Peng <jason@ufactory.cc>
     -->
     <xacro:macro name="xarm_gripper_urdf"
-                 params="prefix:='' attach_to:='' rpy:='0 0 0' xyz:='0 0 0' gripper_meshes_path:='' ">
+                 params="prefix:='' attach_to:='' rpy:='0 0 0' xyz:='0 0 0' gripper_meshes_path:='' tcp_z:='' ">
         <xacro:if value="${gripper_meshes_path == ''}">
             <xacro:property name="gripper_meshes_path" value="xarm_gripper/meshes"/>
+        </xacro:if>
+        <xacro:if value="${tcp_z == ''}">
+            <xacro:property name="tcp_z" value="0.172"/>
         </xacro:if>
         <xacro:unless value="${attach_to == ''}">
             <joint name="${prefix}gripper_fix" type="fixed">
@@ -406,7 +409,7 @@
             name="${prefix}joint_tcp"
             type="fixed">
             <origin
-                xyz="0 0 0.172"
+                xyz="0 0 ${tcp_z}"
                 rpy="0 0 0"/>
             <parent
                 link="${prefix}xarm_gripper_base_link"/>
