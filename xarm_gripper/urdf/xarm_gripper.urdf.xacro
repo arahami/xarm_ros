@@ -16,11 +16,11 @@
             <xacro:property name="gripper_meshes_path" value="xarm_gripper/meshes"/>
         </xacro:if>
         <xacro:if value="${upside_down}">
-            <!-- 0.7855 yaw similar to upside-down robot -->
-            <xacro:property name="gripper_base_rpy" value="0 0 0.7588"/>
+            <!-- 0.7855? yaw similar to real upside-down robot -->
+            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>
         </xacro:if>
         <xacro:unless value="${upside_down}">
-            <xacro:property name="gripper_base_rpy" value="0 0 0.0"/>
+            <xacro:property name="gripper_base_rpy" value="0 0 0"/>
         </xacro:unless>
         <xacro:unless value="${attach_to == ''}">
             <joint name="${prefix}gripper_fix" type="fixed">

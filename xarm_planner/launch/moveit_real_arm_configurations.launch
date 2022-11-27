@@ -7,6 +7,8 @@
   <arg name="report_type" default="normal" />
   <arg name="robot_type" default="xarm" />
   <arg name="ext_ns" default="" />
+  <arg name="upside_down" default="false"/>
+  <arg name="long_finger" default="false"/>
 
   <!-- lite6 -->
   <include if="$(eval robot_type == 'lite')" file="$(eval find(str(arg('robot_type')) + str(arg('arm_dof')) + '_moveit_config') + '/launch/realMove_exec.launch')">
@@ -30,6 +32,8 @@
     <arg name="no_gui_plan" value="$(arg no_gui_plan)" />
     <arg name="report_type" value="$(arg report_type)" />
     <arg name="ext_ns" value="$(arg ext_ns)" />
+    <arg name="upside_down" value="true"/>
+    <arg name="long_finger" value="true"/>
   </include>
 
 </launch>
