@@ -14,6 +14,7 @@
     <xacro:arg name="base_link_xyz" default="0 0 0"/>
     <xacro:arg name="long_finger" default="false"/>
     <xacro:arg name="upside_down" default="false"/>
+    <xacro:arg name="tool_changer" default="false"/>
     
     <!---->
 
@@ -35,7 +36,7 @@
         <xacro:load_gripper attach_to="$(arg prefix)link_eef" effort_control="$(arg effort_control)"
                             velocity_control="$(arg velocity_control)" robot_dof="6"
                             gripper_meshes_path="$(arg gripper_meshes_path)" long_finger="$(arg long_finger)" 
-                            upside_down="$(arg upside_down)"/>
+                            upside_down="$(arg upside_down)" tool_changer="$(arg tool_changer)"/>
     </xacro:unless>
 
     <xacro:if value="$(arg use_gazebo_camera)">

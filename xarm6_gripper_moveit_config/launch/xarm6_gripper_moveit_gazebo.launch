@@ -4,6 +4,7 @@
     <arg name="gripper_meshes_path" default=""/>
     <arg name="upside_down" default="false"/>
     <arg name="long_finger" default="false"/>
+    <arg name="tool_changer" default="false"/>
     
     <!-- Remap the name space so it can send command to gazebo loaded controller -->
     <!-- this remap must appear BEFORE move_group launch -->
@@ -25,6 +26,7 @@
         <arg name="gripper_meshes_path" value="$(arg gripper_meshes_path)"/>
         <arg name="upside_down" value="$(arg upside_down)"/>
         <arg name="long_finger" value="$(arg long_finger)"/>
+        <arg name="tool_changer" value="$(arg tool_changer)"/>
     </include>
 
 

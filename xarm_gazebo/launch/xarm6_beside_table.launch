@@ -11,6 +11,7 @@
     <arg name="gripper_meshes_path" default=""/>
     <arg name="upside_down" default="false"/>
     <arg name="long_finger" default="false"/>
+    <arg name="tool_changer" default="false"/>
     <arg name="xarm_velocity_control" value="$(eval arg('velocity_control') and not arg('run_demo'))"/>
     <arg name="base_link_z" if="$(arg upside_down)" value="0.98"/>
     <arg name="base_link_z" unless="$(arg upside_down)" value="1.021"/>
@@ -39,7 +40,8 @@
     --inorder '$(find xarm_description)/urdf/xarm6_with_gripper.xacro'
     effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control) 
     gripper_meshes_path:=$(arg gripper_meshes_path) base_link_rpy:='$(arg base_link_roll) 0 1.571'
-    base_link_xyz:='0 -0.5 $(arg base_link_z)' long_finger:='$(arg long_finger)'"/>
+    base_link_xyz:='0 -0.5 $(arg base_link_z)' long_finger:='$(arg long_finger)' 
+    tool_changer:='$(arg tool_changer)'"/>
 
     <param if="$(arg add_vacuum_gripper)" name="robot_description"
            command="$(find xacro)/xacro
