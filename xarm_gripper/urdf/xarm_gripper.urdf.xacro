@@ -26,6 +26,7 @@
         <xacro:if value="${tool_changer}">
             <xacro:property name="drive_joint_z" value="0.077"/>
             <xacro:property name="base_link_mesh_path" value="xarm_gripper/meshes/xarm_long_finger_tool_change_edited"/>
+<!--            <xacro:property name="base_link_mesh_path" value="xarm_gripper/meshes/xarm_long_finger_assembled"/>-->
         </xacro:if>
         <xacro:unless value="${tool_changer}">
             <xacro:property name="drive_joint_z" value="0" />
@@ -430,7 +431,7 @@
             name="${prefix}joint_tcp"
             type="fixed">
             <origin
-                xyz="0 0 ${tcp_offset_z}"
+                xyz="0 0 ${tcp_offset_z + drive_joint_z}"
                 rpy="0 0 0"/>
             <parent
                 link="${prefix}xarm_gripper_base_link"/>
