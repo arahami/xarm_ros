@@ -37,7 +37,7 @@
         <arg name="ext_ns" value="$(arg ext_ns)"/>
         <arg name="upside_down" value="$(arg upside_down)"/>
         <arg name="long_finger" value="$(arg long_finger)"/>
-        <arg name="tool_changer" value="$(arg tool_changer)"
+        <arg name="tool_changer" value="$(arg tool_changer)"/>
     </include>
 
 </launch>
