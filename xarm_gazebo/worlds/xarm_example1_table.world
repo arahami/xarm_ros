@@ -15,12 +15,12 @@
     <include>
         <uri>model://box</uri>
         <name>box_on_table</name>
-        <pose>0.0 -0.84 1.021 0 0 0</pose>
+        <pose>0.1 -0.85 1.021 0 0 0</pose>
     </include>
     <include>
         <uri>model://box</uri>
         <name>box_under_table</name>
-        <pose>0.0 -0.84 0 0 0 0</pose>
+        <pose>0.0 -0.55 0 0 0 0</pose>
     </include>
 
     <physics type="ode" update_rate="100.0">
