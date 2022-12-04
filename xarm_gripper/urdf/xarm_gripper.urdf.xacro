@@ -82,7 +82,8 @@
                 </geometry>
             </collision>
         </link>
-        <xacro:if value="${tool_changer}">
+        <!-- add condition for camera if needed -->
+        <xacro:if value="${True}">
             <link name="camera_center">
                 <origin xyz="0 0 0" rpy="0 0 0"/>
             </link>
