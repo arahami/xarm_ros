@@ -18,7 +18,7 @@
         </xacro:if>
         <xacro:if value="${upside_down}">
             <!-- 0.7855? yaw similar to real upside-down robot -->
-            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>
+            <xacro:property name="gripper_base_rpy" value="0 0 0.0"/>
         </xacro:if>
         <xacro:unless value="${upside_down}">
             <xacro:property name="gripper_base_rpy" value="0 0 0"/>
