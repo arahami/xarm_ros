@@ -10,9 +10,6 @@ Panels:
         - /MotionPlanning1/Scene Robot1
         - /MotionPlanning1/Planning Request1
         - /MotionPlanning1/Planned Path1
-        - /MotionPlanning1/Planned Path1/Links1
-        - /MotionPlanning1/Planned Path1/Links1/link_eef1
-        - /MotionPlanning1/Planned Path1/Links1/link_tcp1
         - /MarkerArray1
       Splitter Ratio: 0.7425600290298462
     Tree Height: 140
@@ -136,7 +133,7 @@ Visualization Manager:
           link_tcp:
             Alpha: 1
             Show Axes: false
-            Show Trail: true
+            Show Trail: false
           right_finger:
             Alpha: 1
             Show Axes: false
@@ -165,10 +162,10 @@ Visualization Manager:
         Robot Alpha: 0.20000000298023224
         Robot Color: 138; 226; 52
         Show Robot Collision: false
-        Show Robot Visual: true
+        Show Robot Visual: false
         Show Trail: true
         State Display Time: 0.5s
-        Trail Step Size: 2
+        Trail Step Size: 5
         Trajectory Topic: move_group/display_planned_path
         Use Sim Time: false
       Planning Metrics:
@@ -416,7 +413,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.258439302444458
+      Distance: 1.620654821395874
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -424,17 +421,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.04749440401792526
-        Y: 0.03881043195724487
-        Z: 5.861489285052812e-07
+        X: 0.2611842155456543
+        Y: 0.05775994062423706
+        Z: 7.053582180560625e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.01979811117053032
+      Pitch: 0.2947981655597687
       Target Frame: world
-      Yaw: 4.6336140632629395
+      Yaw: 1.1936140060424805
     Saved: ~
 Window Geometry:
   Displays:
