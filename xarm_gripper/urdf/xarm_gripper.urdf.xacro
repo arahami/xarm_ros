@@ -26,18 +26,17 @@
         <xacro:if value="${tool_changer}">
             <xacro:property name="drive_joint_z" value="0.077"/>
             <xacro:property name="base_link_mesh_path" value="xarm_gripper/meshes/xarm_long_finger_tool_change_edited"/>
-<!--            <xacro:property name="base_link_mesh_path" value="xarm_gripper/meshes/xarm_long_finger_assembled"/>-->
+            <!--            <xacro:property name="base_link_mesh_path" value="xarm_gripper/meshes/xarm_long_finger_assembled"/>-->
         </xacro:if>
         <xacro:unless value="${tool_changer}">
-            <xacro:property name="drive_joint_z" value="0" />
+            <xacro:property name="drive_joint_z" value="0"/>
             <xacro:property name="base_link_mesh_path" value="${gripper_meshes_path}"/>
         </xacro:unless>
         <xacro:unless value="${attach_to == ''}">
             <joint name="${prefix}gripper_fix" type="fixed">
                 <parent link="${attach_to}"/>
                 <child link="${prefix}xarm_gripper_base_link"/>
-
-                <origin xyz="0 0 0" rpy="${gripper_base_rpy}"/>  
+                <origin xyz="0 0 0" rpy="${gripper_base_rpy}"/>
             </joint>
         </xacro:unless>
         <link
@@ -83,6 +82,22 @@
                 </geometry>
             </collision>
         </link>
+        <xacro:if value="${tool_changer}">
+            <link name="camera_center">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </link>
+            <joint
+                name="camera_joint"
+                type="fixed">
+                <origin
+                    xyz="-0.0463 -0.0467 0"
+                    rpy="0 0 ${(3/4)*pi}"/>
+                <parent
+                    link="${prefix}xarm_gripper_base_link"/>
+                <child
+                    link="camera_center"/>
+            </joint>
+        </xacro:if>
         <link
             name="${prefix}left_outer_knuckle">
             <inertial>
