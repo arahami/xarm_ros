@@ -25,7 +25,7 @@
   <node if="$(arg run_demo_traj)" name="position_controller_spawner"
     pkg="controller_manager"
     type="spawner"
-    respawn="false"
+    respawn="true"
     output="screen"
     ns="/$(arg namespace)"
     args="joint1_position_controller joint2_position_controller
@@ -39,7 +39,7 @@
   <node if="$(arg add_gripper)" name="gripper_controller_spawner"
     pkg="controller_manager"
     type="spawner"
-    respawn="false"
+    respawn="true"
     output="screen"
     ns="/$(arg namespace)"
     args="$(arg gripper_trajectory_controller) "/>
