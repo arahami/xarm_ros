@@ -1,3 +1,5 @@
 .vscode/
 .idea/
 .git_template
+*.rviz
+*.ss
