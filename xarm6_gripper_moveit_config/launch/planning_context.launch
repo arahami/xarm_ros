@@ -8,9 +8,9 @@
     <arg name="upside_down" default="false"/>
     <arg name="long_finger" default="false"/>
     <arg name="tool_changer" default="false"/>
-    <arg name="base_link_z" if="$(arg upside_down)" value="0.98"/>
+    <arg name="base_link_z" if="$(arg upside_down)" value="0"/>
     <arg name="base_link_z" unless="$(arg upside_down)" value="0"/>
-    <arg name="base_link_roll" if="$(arg upside_down)" value="3.14"/>
+    <arg name="base_link_roll" if="$(arg upside_down)" value="0"/>
     <arg name="base_link_roll" unless="$(arg upside_down)" value="0"/>
 
 
