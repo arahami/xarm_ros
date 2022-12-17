@@ -42,14 +42,15 @@
     <!-- If needed, broadcast static tf for robot root -->
 
     <!-- publish /joint_states from specified source topic -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true"
+          respawn_delay="1">
         <param name="/use_gui" value="$(arg use_gui)"/>
         <rosparam param="/source_list" subst_value="True">$(arg jnt_stat_source)</rosparam>
     </node>
 
     <!-- Given the published joint states, publish tf for the robot links -->
     <node if="$(arg pub_tf)" name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-          respawn="true" output="screen"/>
+          respawn="false" output="screen" respawn_delay="1"/>
 
     <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
     <include if="$(arg load_move_group)" file="$(find xarm6_gripper_moveit_config)/launch/move_group.launch">

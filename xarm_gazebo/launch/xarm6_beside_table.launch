@@ -57,7 +57,7 @@
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model"
           respawn="false" output="screen"
           args="-urdf -model xarm6 -param robot_description -y $(arg base_link_y) -z $(arg base_link_z) 
-          -R $(arg base_link_roll) -Y 1.571"/>
+          -R $(arg base_link_roll) -Y -1.571"/>
 
     <!-- load the corresponding controllers -->
     <include file="$(find xarm_controller)/launch/xarm6_control.launch">
