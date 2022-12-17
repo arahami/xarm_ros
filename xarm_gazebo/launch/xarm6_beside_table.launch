@@ -19,6 +19,8 @@
     <arg name="base_link_z" unless="$(arg upside_down)" value="1.021"/>
     <arg name="base_link_roll" if="$(arg upside_down)" value="3.14"/>
     <arg name="base_link_roll" unless="$(arg upside_down)" value="0"/>
+    <arg name="base_link_yaw" if="$(arg upside_down)" value="1.57"/>
+    <arg name="base_link_yaw" unless="$(arg upside_down)" value="-1.57"/>
 
 
     <rosparam file="$(find xarm6_moveit_config)/config/xarm6_params.yaml" command="load" ns="$(arg namespace)"/>
@@ -57,7 +59,7 @@
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model"
           respawn="false" output="screen"
           args="-urdf -model xarm6 -param robot_description -y $(arg base_link_y) -z $(arg base_link_z) 
-          -R $(arg base_link_roll) -Y -1.571"/>
+          -R $(arg base_link_roll) -Y $(arg base_link_yaw)"/>
 
     <!-- load the corresponding controllers -->
     <include file="$(find xarm_controller)/launch/xarm6_control.launch">
