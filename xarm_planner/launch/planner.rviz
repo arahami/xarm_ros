@@ -10,7 +10,12 @@ Panels:
         - /MotionPlanning1/Scene Robot1
         - /MotionPlanning1/Planning Request1
         - /MotionPlanning1/Planned Path1
+        - /MotionPlanning1/Planned Path1/Links1
+        - /MotionPlanning1/Planned Path1/Links1/link_tcp1
         - /MarkerArray1
+        - /Axes1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.7425600290298462
     Tree Height: 140
   - Class: rviz/Help
@@ -137,7 +142,7 @@ Visualization Manager:
           link_tcp:
             Alpha: 1
             Show Axes: false
-            Show Trail: false
+            Show Trail: true
           right_finger:
             Alpha: 1
             Show Axes: false
@@ -167,7 +172,7 @@ Visualization Manager:
         Robot Color: 138; 226; 52
         Show Robot Collision: false
         Show Robot Visual: true
-        Show Trail: true
+        Show Trail: false
         State Display Time: 0.5s
         Trail Step Size: 5
         Trajectory Topic: move_group/display_planned_path
@@ -409,6 +414,89 @@ Visualization Manager:
         {}
       Queue Size: 100
       Value: true
+    - Alpha: 0.5
+      Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.009999999776482582
+      Reference Frame: <Fixed Frame>
+      Show Trail: false
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        camera_center:
+          Value: false
+        left_finger:
+          Value: false
+        left_inner_knuckle:
+          Value: false
+        left_outer_knuckle:
+          Value: false
+        link1:
+          Value: false
+        link2:
+          Value: false
+        link3:
+          Value: false
+        link4:
+          Value: false
+        link5:
+          Value: false
+        link6:
+          Value: false
+        link_base:
+          Value: false
+        link_eef:
+          Value: false
+        link_tcp:
+          Value: true
+        right_finger:
+          Value: false
+        right_inner_knuckle:
+          Value: false
+        right_outer_knuckle:
+          Value: false
+        world:
+          Value: false
+        xarm_gripper_base_link:
+          Value: false
+      Marker Alpha: 0.5
+      Marker Scale: 0.5
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        world:
+          link_base:
+            link1:
+              link2:
+                link3:
+                  link4:
+                    link5:
+                      link6:
+                        link_eef:
+                          xarm_gripper_base_link:
+                            camera_center:
+                              {}
+                            left_inner_knuckle:
+                              {}
+                            left_outer_knuckle:
+                              left_finger:
+                                {}
+                            link_tcp:
+                              {}
+                            right_inner_knuckle:
+                              {}
+                            right_outer_knuckle:
+                              right_finger:
+                                {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -425,7 +513,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.620654821395874
+      Distance: 1.6162705421447754
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -433,17 +521,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.2611842155456543
-        Y: 0.05775994062423706
-        Z: 7.053582180560625e-07
+        X: 0.21596427261829376
+        Y: 0.40065890550613403
+        Z: 4.0733499417910934e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.2947981655597687
+      Pitch: 0.07479812949895859
       Target Frame: world
-      Yaw: 1.1936140060424805
+      Yaw: 4.933611869812012
     Saved: ~
 Window Geometry:
   Displays:
