@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="run_demo" default="false" doc="If true, perform the demo after launch"/>
+    <arg name="paused" default="false" doc="Starts gazebo in paused mode"/>
+    <arg name="gui" default="true" doc="Starts gazebo gui"/>
+    <arg name="effort_control" default="false"/>
+    <arg name="velocity_control" default="false"/>
+    <arg name="add_gripper" default="false"/>
+    <arg name="add_vacuum_gripper" default="false"/>
+    <arg name="namespace" default="xarm"/>
+    <arg name="gripper_meshes_path" default=""/>
+    <arg name="upside_down" default="false"/>
+    <arg name="long_finger" default="false"/>
+    <arg name="tool_changer" default="false"/>
+    <arg name="xarm_velocity_control" value="$(eval arg('velocity_control') and not arg('run_demo'))"/>
+    <arg name="base_link_y" if="$(arg upside_down)" value="-0.85"/>
+    <arg name="base_link_y" unless="$(arg upside_down)" value="-0.3"/>
+    <arg name="base_link_z" if="$(arg upside_down)" value="0.98"/>
+    <arg name="base_link_z" unless="$(arg upside_down)" value="1.021"/>
+    <arg name="base_link_roll" if="$(arg upside_down)" value="3.14"/>
+    <arg name="base_link_roll" unless="$(arg upside_down)" value="0"/>
+    <arg name="base_link_yaw" if="$(arg upside_down)" value="1.57"/>
+    <arg name="base_link_yaw" unless="$(arg upside_down)" value="-1.57"/>
+
+    <rosparam file="$(find xarm6_moveit_config)/config/xarm6_params.yaml" command="load" ns="$(arg namespace)"/>
+    <rosparam if="$(arg add_gripper)" file="$(find xarm_controller)/config/gripper_gazebo_ros_control.yaml"
+              command="load"/>
+    <!-- startup simulated world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find xarm_gazebo)/worlds/xarm_example1_table.world"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="respawn_gazebo" value="true"/>
+    </include>
+
+    <!-- send robot urdf to param server, joint limit may be overwritten if use moveit planner -->
+    <param unless="$(eval arg('add_gripper') or arg('add_vacuum_gripper'))" name="robot_description"
+           command="$(find xacro)/xacro
+    --inorder '$(find xarm_description)/urdf/xarm6_robot.urdf.xacro'
+    effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control)"/>
+
+    <!--    base_link_rpy:='$(arg base_link_roll) 0 1.571'
+    base_link_xyz:='0 -0.5 $(arg base_link_z)' -->
+    <param if="$(arg add_gripper)" name="robot_description"
+           command="$(find xacro)/xacro
+    --inorder '$(find xarm_description)/urdf/xarm6_with_gripper.xacro'
+    effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control) 
+    gripper_meshes_path:=$(arg gripper_meshes_path) 
+    tool_changer:='$(arg tool_changer)' upside_down:='$(arg upside_down)' long_finger:='$(arg long_finger)'"/>
+
+    <param if="$(arg add_vacuum_gripper)" name="robot_description"
+           command="$(find xacro)/xacro
+    --inorder '$(find xarm_description)/urdf/xarm6_with_vacuum_gripper.xacro'
+    effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control)"/>
+
+    <!-- spawn robot model in gazebo, located on the table 
+    rpy and xyz are removed and passed directly to xacro files to make moveit_rviz and gazebo launch files similar-->
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen"
+          args="-urdf -model xarm6 -param robot_description -y $(arg base_link_y) -z $(arg base_link_z) 
+          -R $(arg base_link_roll) -Y $(arg base_link_yaw)"/>
+    
+      <!-- extra table -->
+    <node name="spawn_gazebo_model_table2" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model table2 -file $(env HOME)/.gazebo/models/table/model.sdf -y -0.0"/>
+
+    <!-- boxes -->
+    <!-- on table -->
+    <node name="spawn_gazebo_model_boxe1" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box1 -file $(env HOME)/.gazebo/models/box/model.sdf -y -0.65 -z 1.021"/>
+    <node name="spawn_gazebo_model_boxe2" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box2 -file $(env HOME)/.gazebo/models/box/model.sdf -y -1.0 -z 1.021"/>
+
+    <node name="spawn_gazebo_model_boxe3" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box3 -file $(env HOME)/.gazebo/models/box/model.sdf -x 0.45 -y -0.65 -z 1.021"/>
+    <node name="spawn_gazebo_model_boxe4" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box4 -file $(env HOME)/.gazebo/models/box/model.sdf -x 0.45 -y -1.0 -z 1.021"/>
+
+    <node name="spawn_gazebo_model_boxe5" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box5 -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.45 -y -0.65 -z 1.021"/>
+    <node name="spawn_gazebo_model_boxe6" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model box6 -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.45 -y -1.0 -z 1.021"/>
+
+    <node name="spawn_gazebo_model_collectingboxe" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" unless="$(arg upside_down)"
+          args="-sdf -model collectingboxe -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.35 -y -0.2 -z 1.021"/>  
+
+    <!-- below table -->
+    <node name="spawn_gazebo_model_boxe1_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box1_below -file $(env HOME)/.gazebo/models/box/model.sdf -x 0 -y -0.65"/>
+    <node name="spawn_gazebo_model_boxe2_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box2_below -file $(env HOME)/.gazebo/models/box/model.sdf -x 0 -y -1"/>
+
+    <node name="spawn_gazebo_model_boxe3_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box3_below -file $(env HOME)/.gazebo/models/box/model.sdf -x 0.45 -y -0.65"/>
+    <node name="spawn_gazebo_model_boxe4_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box4_below -file $(env HOME)/.gazebo/models/box/model.sdf -x 0.45 -y -1"/>
+
+    <node name="spawn_gazebo_model_boxe5_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box5_below -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.45 -y -0.65"/>
+    <node name="spawn_gazebo_model_boxe6_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model box6_below -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.45 -y -1"/>
+
+    <node name="spawn_gazebo_model_collectingbox_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen" if="$(arg upside_down)"
+          args="-sdf -model collectingbox_below -file $(env HOME)/.gazebo/models/box/model.sdf -x -0.35 -y -0.2"/>
+
+    <!-- load the corresponding controllers -->
+    <include file="$(find xarm_controller)/launch/xarm6_control.launch">
+        <arg name="run_demo_traj" value="$(arg run_demo)"/>
+        <arg name="effort_control" value="$(arg effort_control)"/>
+        <arg name="velocity_control" value="$(arg xarm_velocity_control)"/>
+        <arg name="add_gripper" value="$(arg add_gripper)"/>
+        <arg name="namespace" value="$(arg namespace)"/>
+    </include>
+
+
+</launch>
