@@ -185,7 +185,7 @@ Visualization Manager:
         TextHeight: 0.07999999821186066
       Planning Request:
         Colliding Link Color: 255; 0; 0
-        Goal State Alpha: 1
+        Goal State Alpha: 0.4000000059604645
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
@@ -193,7 +193,7 @@ Visualization Manager:
         Query Goal State: true
         Query Start State: false
         Show Workspace: false
-        Start State Alpha: 1
+        Start State Alpha: 0.4000000059604645
         Start State Color: 0; 255; 0
       Planning Scene Topic: move_group/monitored_planning_scene
       Robot Description: robot_description
@@ -318,7 +318,7 @@ Visualization Manager:
       Frames:
         All Enabled: false
         camera_center:
-          Value: false
+          Value: true
         left_finger:
           Value: false
         left_inner_knuckle:
@@ -402,7 +402,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 2.127079963684082
+      Distance: 1.4495453834533691
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -410,17 +410,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.19150376319885254
-        Y: 0.026063725352287292
-        Z: 3.427272758926847e-07
+        X: -0.5163501501083374
+        Y: 0.2023623287677765
+        Z: 7.003551445450285e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.18479640781879425
+      Pitch: 0.1997963935136795
       Target Frame: world
-      Yaw: 4.794961929321289
+      Yaw: 5.9899725914001465
     Saved: ~
 Window Geometry:
   Displays:

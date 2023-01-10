@@ -22,7 +22,6 @@
     <arg name="base_link_yaw" if="$(arg upside_down)" value="1.57"/>
     <arg name="base_link_yaw" unless="$(arg upside_down)" value="-1.57"/>
 
-
     <rosparam file="$(find xarm6_moveit_config)/config/xarm6_params.yaml" command="load" ns="$(arg namespace)"/>
     <rosparam if="$(arg add_gripper)" file="$(find xarm_controller)/config/gripper_gazebo_ros_control.yaml"
               command="load"/>
@@ -60,6 +59,17 @@
           respawn="false" output="screen"
           args="-urdf -model xarm6 -param robot_description -y $(arg base_link_y) -z $(arg base_link_z) 
           -R $(arg base_link_roll) -Y $(arg base_link_yaw)"/>
+    
+
+    <!-- boxes -->
+    <!-- on table -->
+    <node name="spawn_gazebo_model_boxe1" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen"
+          args="-sdf -model box1 -file $(env HOME)/.gazebo/models/box/model.sdf -y -0.85 -z 1.021"/>
+    <!-- under table -->
+    <node name="spawn_gazebo_model_boxe1_below" pkg="gazebo_ros" type="spawn_model"
+          respawn="false" output="screen"
+          args="-sdf -model box1_below -file $(env HOME)/.gazebo/models/box/model.sdf -x 0.2 -y -0.45"/>
 
     <!-- load the corresponding controllers -->
     <include file="$(find xarm_controller)/launch/xarm6_control.launch">
