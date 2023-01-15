@@ -10,8 +10,6 @@ Panels:
         - /MotionPlanning1/Scene Robot1
         - /MotionPlanning1/Planning Request1
         - /MotionPlanning1/Planned Path1
-        - /MotionPlanning1/Planned Path1/Links1
-        - /MotionPlanning1/Planned Path1/Links1/link_tcp1
         - /MarkerArray1
         - /Axes1
         - /TF1
@@ -50,7 +48,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Acceleration_Scaling_Factor: 0.01
+    - Acceleration_Scaling_Factor: 0.05
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
       Move Group Namespace: ""
@@ -142,7 +140,7 @@ Visualization Manager:
           link_tcp:
             Alpha: 1
             Show Axes: false
-            Show Trail: true
+            Show Trail: false
           right_finger:
             Alpha: 1
             Show Axes: false
@@ -199,7 +197,7 @@ Visualization Manager:
       Planning Scene Topic: /move_group/monitored_planning_scene
       Robot Description: robot_description
       Scene Geometry:
-        Scene Alpha: 1
+        Scene Alpha: 0.5
         Scene Color: 252; 233; 79
         Scene Display Time: 1
         Show Scene Geometry: true
@@ -303,7 +301,7 @@ Visualization Manager:
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
-      Velocity_Scaling_Factor: 0.01
+      Velocity_Scaling_Factor: 0.05
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -411,7 +409,7 @@ Visualization Manager:
       Marker Topic: /rviz_visual_tools
       Name: MarkerArray
       Namespaces:
-        {}
+        Text: true
       Queue Size: 100
       Value: true
     - Alpha: 0.5
@@ -429,7 +427,7 @@ Visualization Manager:
       Frames:
         All Enabled: false
         camera_center:
-          Value: false
+          Value: true
         left_finger:
           Value: false
         left_inner_knuckle:
@@ -513,7 +511,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.6162705421447754
+      Distance: 2.2380452156066895
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -521,17 +519,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.21596427261829376
-        Y: 0.40065890550613403
-        Z: 4.0733499417910934e-07
+        X: 0.6951086521148682
+        Y: -0.28638625144958496
+        Z: 1.0033813850895967e-06
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.07479812949895859
+      Pitch: 0.18479830026626587
       Target Frame: world
-      Yaw: 4.933611869812012
+      Yaw: 2.213620901107788
     Saved: ~
 Window Geometry:
   Displays:

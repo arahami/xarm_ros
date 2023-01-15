@@ -92,7 +92,7 @@
                 type="fixed">
                 <origin
                     xyz="-0.0463 -0.0467 0"
-                    rpy="${-(1/2)*pi} 0 ${(3/4)*pi}"/>
+                    rpy="${(1/2)*pi} ${(1/2)*pi} ${(-1/4)*pi}"/>
                 <parent
                     link="${prefix}xarm_gripper_base_link"/>
                 <child
