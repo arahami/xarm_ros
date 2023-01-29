@@ -16,7 +16,7 @@
 
     <!-- Load universal robot description format (URDF) -->
     <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro --inorder  
-        '$(find xarm_description)/urdf/xarm6_with_gripper.xacro' limited:=true 
+        '$(find xarm_description)/urdf/xarm6_with_gripper.xacro' limited:=true
          gripper_meshes_path:=$(arg gripper_meshes_path) base_link_rpy:='$(arg base_link_roll) 0 0' 
          base_link_xyz:='0 0 $(arg base_link_z)' long_finger:='$(arg long_finger)' upside_down:='$(arg upside_down)'
          tool_changer:='$(arg tool_changer)'"/>
