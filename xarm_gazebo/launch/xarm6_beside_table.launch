@@ -45,7 +45,7 @@
            command="$(find xacro)/xacro
     --inorder '$(find xarm_description)/urdf/xarm6_with_gripper.xacro'
     effort_control:=$(arg effort_control) velocity_control:=$(arg xarm_velocity_control) 
-    gripper_meshes_path:=$(arg gripper_meshes_path) 
+    gripper_meshes_path:=$(arg gripper_meshes_path) limited:=true
     tool_changer:='$(arg tool_changer)' upside_down:='$(arg upside_down)' long_finger:='$(arg long_finger)'"/>
 
     <param if="$(arg add_vacuum_gripper)" name="robot_description"

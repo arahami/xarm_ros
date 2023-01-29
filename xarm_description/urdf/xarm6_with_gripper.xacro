@@ -15,7 +15,7 @@
     <xacro:arg name="long_finger" default="false"/>
     <xacro:arg name="upside_down" default="false"/>
     <xacro:arg name="tool_changer" default="false"/>
-    
+
     <!---->
 
     <!-- load xarm6 robot -->
@@ -23,21 +23,35 @@
 
     <!-- Attach gripper -->
     <xacro:include filename="$(find xarm_gripper)/urdf/xarm_gripper_model.xacro"/>
-    
-    <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)"
-                       effort_control="$(arg effort_control)" velocity_control="$(arg velocity_control)"
-                       rs_d435i="$(arg add_realsense_d435i)" rpy="$(arg base_link_rpy)" xyz="$(arg base_link_xyz)"/>
+
+    <xacro:xarm6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)"
+                       limited="$(arg limited)"
+                       effort_control="$(arg effort_control)"
+                       velocity_control="$(arg velocity_control)"
+                       rs_d435i="$(arg add_realsense_d435i)" rpy="$(arg base_link_rpy)"
+                       xyz="$(arg base_link_xyz)"/>
 
     <xacro:if value="$(arg add_realsense_d435i)">
-        <xacro:load_gripper attach_to="$(arg prefix)link_eef" xyz="0 0 0.003" effort_control="$(arg effort_control)"
+        <xacro:load_gripper attach_to="$(arg prefix)link_eef" xyz="0 0 0.003"
+                            effort_control="$(arg effort_control)"
                             velocity_control="$(arg velocity_control)" robot_dof="6"/>
     </xacro:if>
     <xacro:unless value="$(arg add_realsense_d435i)">
-        <xacro:load_gripper attach_to="$(arg prefix)link_eef" effort_control="$(arg effort_control)"
+        <xacro:load_gripper attach_to="$(arg prefix)link_eef"
+                            effort_control="$(arg effort_control)"
                             velocity_control="$(arg velocity_control)" robot_dof="6"
-                            gripper_meshes_path="$(arg gripper_meshes_path)" long_finger="$(arg long_finger)" 
+                            gripper_meshes_path="$(arg gripper_meshes_path)"
+                            long_finger="$(arg long_finger)"
                             upside_down="$(arg upside_down)" tool_changer="$(arg tool_changer)"/>
     </xacro:unless>
+
+    <!-- attach camera -->
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+    <xacro:sensor_d435 parent="$(arg prefix)link_eef" use_mesh="true" add_plug="false"
+                       use_nominal_extrinsics="true">
+            <origin xyz="0 -0.051 -0.0115" rpy="0 0 ${pi*(-1/2)}"/>
+<!--        <origin xyz="0 -0.051 -0.04" rpy="0 0 ${pi*(-1/2)}"/>-->
+    </xacro:sensor_d435>
 
     <xacro:if value="$(arg use_gazebo_camera)">
         <!-- <xacro:include filename="$(find kinect_v2)/urdf/kinect_v2.urdf.xacro" />
