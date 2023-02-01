@@ -179,6 +179,8 @@
       <disable_collisions link1="${prefix}link5" link2="${prefix}xarm_vacuum_gripper_link" reason="Never" />
       <disable_collisions link1="${prefix}link6" link2="${prefix}xarm_vacuum_gripper_link" reason="Never" />
       <disable_collisions link1="${prefix}link_eef" link2="${prefix}xarm_vacuum_gripper_link" reason="Adjacent" />
+      <disable_collisions link1="${prefix}link_eef" link2="camera_link" reason="Adjacent" />
+      <disable_collisions link1="${prefix}xarm_vacuum_gripper_link" link2="camera_link" reason="Adjacent" />
     </xacro:if>
 
     <!-- other box -->
