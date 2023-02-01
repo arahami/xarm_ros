@@ -35,9 +35,8 @@
         <arg name="no_gui_plan" value="$(arg no_gui_plan)"/>
         <arg name="report_type" value="$(arg report_type)"/>
         <arg name="ext_ns" value="$(arg ext_ns)"/>
-        <arg name="upside_down" value="$(arg upside_down)"/>
-        <arg name="long_finger" value="$(arg long_finger)"/>
-        <arg name="tool_changer" value="$(arg tool_changer)"/>
+        <arg name="long_finger" value="$(arg long_finger)" if="$(arg long_finger)"/>
+        <arg name="tool_changer" value="$(arg tool_changer)" if="$(arg tool_changer)"/>
     </include>
 
 </launch>
