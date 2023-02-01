@@ -17,13 +17,13 @@
         <xacro:if value="${gripper_meshes_path == ''}">
             <xacro:property name="gripper_meshes_path" value="xarm_gripper/meshes"/>
         </xacro:if>
-        <xacro:if value="${upside_down}">
-            <!-- 0.7855? yaw similar to real upside-down robot -->
-            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>
-        </xacro:if>
-        <xacro:unless value="${upside_down}">
-            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>
-        </xacro:unless>
+<!--        <xacro:if value="${upside_down}">-->
+<!--            &lt;!&ndash; 0.7855? yaw similar to real upside-down robot &ndash;&gt;-->
+<!--            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>-->
+<!--        </xacro:if>-->
+<!--        <xacro:unless value="${upside_down}">-->
+<!--            <xacro:property name="gripper_base_rpy" value="0 0 0.7855"/>-->
+<!--        </xacro:unless>-->
         <xacro:if value="${tool_changer}">
             <xacro:property name="drive_joint_z" value="0.077"/>
             <xacro:property name="base_link_mesh_path"
@@ -38,7 +38,7 @@
             <joint name="${prefix}gripper_fix" type="fixed">
                 <parent link="${attach_to}"/>
                 <child link="${prefix}xarm_gripper_base_link"/>
-                <origin xyz="0 0 0" rpy="${gripper_base_rpy}"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
             </joint>
         </xacro:unless>
         <link

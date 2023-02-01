@@ -343,7 +343,7 @@
     type="fixed">
     <origin
       xyz="0 0 0"
-      rpy="0 0 0" />
+      rpy="0 0 0.7855" />
     <parent
       link="${prefix}link6" />
     <child

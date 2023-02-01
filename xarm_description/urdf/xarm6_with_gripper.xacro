@@ -49,7 +49,8 @@
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
     <xacro:sensor_d435 parent="$(arg prefix)link_eef" use_mesh="true" add_plug="false"
                        use_nominal_extrinsics="true">
-            <origin xyz="0 -0.051 -0.0115" rpy="0 0 ${pi*(-1/2)}"/>
+        <origin xyz="-0.0365 -0.0365 -0.0115" rpy="0 0 ${pi*(-3/4)}"/>
+<!--            <origin xyz="0 -0.051 -0.0115" rpy="0 0 ${pi*(-1/2)}"/>-->
 <!--        <origin xyz="0 -0.051 -0.04" rpy="0 0 ${pi*(-1/2)}"/>-->
     </xacro:sensor_d435>
 
