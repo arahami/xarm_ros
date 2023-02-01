@@ -55,8 +55,10 @@
   <joint
     name="${prefix}joint_tcp"
     type="fixed">
+    <!-- orig -->
+    <!-- xyz="0 0 0.176"-->
     <origin
-      xyz="0 0 0.126"
+      xyz="0 0 0.2"
       rpy="0 0 0" />
     <parent
       link="${prefix}xarm_vacuum_gripper_link" />
